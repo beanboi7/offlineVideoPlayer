@@ -10,8 +10,20 @@ import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 
 
 void main(){
-  runApp(OfflinePlayer());
+  runApp(MyApp());
 }
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'OfflinePlayer for video',
+      home: OfflinePlayer(),
+    );
+  }
+}
+
+
 class OfflinePlayer extends StatefulWidget {
   @override
   _OfflinePlayerState createState() => _OfflinePlayerState();
@@ -39,8 +51,7 @@ class _OfflinePlayerState extends State<OfflinePlayer> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
+    return Scaffold(
         bottomNavigationBar: CurvedNavigationBar(
           index: _page,
           height: 50.0,
@@ -58,16 +69,20 @@ class _OfflinePlayerState extends State<OfflinePlayer> {
         ),
         appBar: AppBar(title: Text("VideoPlayer"), centerTitle: true),
         body: _page == 2 ?
-        Center(
-          child: uploadVideo(),
+        Builder(
+          builder: (BuildContext context) => Center(
+            child: uploadVideo(),
+            ),
         ) : _page == 1 ?
-        Center(
-          child: playMedia(),
+        Builder(
+          builder: (BuildContext context) => Center(
+            child: playMedia(),
+          ),
         ) : _page == 0 ?
-        Center(
-            child: Text("ListView of uploaded media")) : Text("Home Page"),
-
-      ),
+        Builder(
+          builder: (BuildContext context) => Center(
+              child: Text("ListView of uploaded media")),
+        ) : Text("Home Page"),
     );
   }
 
@@ -120,23 +135,14 @@ class _OfflinePlayerState extends State<OfflinePlayer> {
           child:(_videoFile != null) ? Image.file(_videoFile) : Image.network('https://i.imgur.com/sUFH1Aq.png'),
         ),
         ElevatedButton(
-            onPressed: _goGallery,
-            child: Icon(Icons.upload_rounded))
+          onPressed: _goGallery,
+              child: Icon(Icons.upload_rounded),
+        )
       ],
     );
   }
 
-  Future getVidFromGallery() async {
-    final pickVideo = await _picker.getVideo(source: ImageSource.gallery, maxDuration: Duration(seconds: 120));
-    setState(() {
-      if (pickVideo != null){
-        _videoFile = File(pickVideo.path);
-      }
-    });
-  }
-
-
-  Future<void> _goGallery() async {
+  void _goGallery() async {
     showModalBottomSheet(
       context: context,
       builder: (BuildContext context){
@@ -168,6 +174,15 @@ class _OfflinePlayerState extends State<OfflinePlayer> {
         );
       },
     );
+  }
+
+  Future getVidFromGallery() async {
+    final pickVideo = await _picker.getVideo(source: ImageSource.gallery, maxDuration: Duration(seconds: 120));
+    setState(() {
+      if (pickVideo != null){
+        _videoFile = File(pickVideo.path);
+      }
+    });
   }
 
 
