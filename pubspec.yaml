@@ -24,8 +24,8 @@ dependencies:
   flutter:
     sdk: flutter
   video_player:
-  image_picker: ^0.7.4
   curved_navigation_bar: ^0.3.7
+  file_picker: ^2.1.5+1
 
 
   # The following adds the Cupertino Icons font to your application.
