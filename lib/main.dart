@@ -6,6 +6,7 @@ import 'package:flutter/widgets.dart';
 import 'form.dart';
 import 'profile.dart';
 import 'player.dart';
+import 'constants.dart';
 
 void main(){
   runApp(MyApp());
@@ -31,14 +32,14 @@ class VideoList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('hemlo')),
+      appBar: AppBar(title: Text('Home')),
       drawer: Drawer(
         child: ListView(
           padding: EdgeInsets.zero,
           children: <Widget>[
             DrawerHeader(
               child: Center(
-                child: Text('drawer header'),
+                child: Text('Welcome'),
               ),
               decoration: BoxDecoration(
                 color: Colors.green,
@@ -104,14 +105,13 @@ class VideoList extends StatelessWidget {
                             Spacer(flex:1),
                             SizedBox(
                               child: Image(
-                                image: AssetImage('assets/img1.jpg'),
+                                image: img1,
                                 fit: BoxFit.contain,
                               ),
                             ),
                             Spacer(flex:2),
                             Container(
                               child: Column(
-
                                 children: <Widget>[
                                   Spacer(flex:1),
                                   Text(
@@ -134,7 +134,7 @@ class VideoList extends StatelessWidget {
                                   Row(
                                       crossAxisAlignment: CrossAxisAlignment.center,
                                       children: <Widget>[
-                                        Text('$TimeOfDay.now()'),
+                                        Text("${TimeOfDay.now()}"),
                                         ElevatedButton.icon(
                                           label: Text('Save'),
                                           icon: Icon(Icons.bookmark_border),
@@ -155,11 +155,13 @@ class VideoList extends StatelessWidget {
                 ],
               ),
               onTap: (){
-                showDialog(
-                  context: context,
-                  builder: (context) => AlertDialog(
-                    title: Text('Container pressed'),
-                    content: Text("InkWell works well"),
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (_) => Player(
+                          passedImage: img1,
+                          passedVideo: map[img1],
+                        ),
                   ),
                 );
               },
@@ -204,14 +206,13 @@ class VideoList extends StatelessWidget {
                             Spacer(flex:1),
                             SizedBox(
                               child: Image(
-                                image: AssetImage('assets/img2.jpg'),
+                                image: img2,
                                 fit: BoxFit.contain,
                               ),
                             ),
                             Spacer(flex:2),
                             Container(
                               child: Column(
-
                                 children: <Widget>[
                                   Spacer(flex:1),
                                   Text(
@@ -234,7 +235,7 @@ class VideoList extends StatelessWidget {
                                   Row(
                                       crossAxisAlignment: CrossAxisAlignment.center,
                                       children: <Widget>[
-                                        Text('$TimeOfDay.now()'),
+                                        Text("${TimeOfDay.now()}"),
                                         ElevatedButton.icon(
                                           label: Text('Save'),
                                           icon: Icon(Icons.bookmark_border),
@@ -255,11 +256,13 @@ class VideoList extends StatelessWidget {
                 ],
               ),
               onTap: (){
-                showDialog(
-                  context: context,
-                  builder: (context) => AlertDialog(
-                    title: Text('Container pressed'),
-                    content: Text("InkWell works well"),
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (_) => Player(
+                      passedImage: img1,
+                      passedVideo: map[img1],
+                    ),
                   ),
                 );
               },
@@ -304,14 +307,13 @@ class VideoList extends StatelessWidget {
                             Spacer(flex:1),
                             SizedBox(
                               child: Image(
-                                image: AssetImage('assets/img3.jpg'),
+                                image: img3,
                                 fit: BoxFit.contain,
                               ),
                             ),
                             Spacer(flex:2),
                             Container(
                               child: Column(
-
                                 children: <Widget>[
                                   Spacer(flex:1),
                                   Text(
@@ -334,7 +336,7 @@ class VideoList extends StatelessWidget {
                                   Row(
                                       crossAxisAlignment: CrossAxisAlignment.center,
                                       children: <Widget>[
-                                        Text('$TimeOfDay.now()'),
+                                        Text("${TimeOfDay.now()}"),
                                         ElevatedButton.icon(
                                           label: Text('Save'),
                                           icon: Icon(Icons.bookmark_border),
@@ -355,11 +357,13 @@ class VideoList extends StatelessWidget {
                 ],
               ),
               onTap: (){
-                showDialog(
-                  context: context,
-                  builder: (context) => AlertDialog(
-                    title: Text('Container pressed'),
-                    content: Text("InkWell works well"),
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (_) => Player(
+                      passedImage: img1,
+                      passedVideo: map[img1],
+                    ),
                   ),
                 );
               },
@@ -404,14 +408,13 @@ class VideoList extends StatelessWidget {
                             Spacer(flex:1),
                             SizedBox(
                               child: Image(
-                                image: AssetImage('assets/img4.jpg'),
+                                image: img4,
                                 fit: BoxFit.contain,
                               ),
                             ),
                             Spacer(flex:2),
                             Container(
                               child: Column(
-
                                 children: <Widget>[
                                   Spacer(flex:1),
                                   Text(
@@ -434,7 +437,7 @@ class VideoList extends StatelessWidget {
                                   Row(
                                       crossAxisAlignment: CrossAxisAlignment.center,
                                       children: <Widget>[
-                                        Text('$TimeOfDay.now()'),
+                                        Text("${TimeOfDay.now()}"),
                                         ElevatedButton.icon(
                                           label: Text('Save'),
                                           icon: Icon(Icons.bookmark_border),
@@ -455,11 +458,13 @@ class VideoList extends StatelessWidget {
                 ],
               ),
               onTap: (){
-                showDialog(
-                  context: context,
-                  builder: (context) => AlertDialog(
-                    title: Text('Container pressed'),
-                    content: Text("InkWell works well"),
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (_) => Player(
+                      passedImage: img1,
+                      passedVideo: map[img1],
+                    ),
                   ),
                 );
               },
@@ -504,14 +509,13 @@ class VideoList extends StatelessWidget {
                             Spacer(flex:1),
                             SizedBox(
                               child: Image(
-                                image: AssetImage('assets/img5.png'),
+                                image: img5,
                                 fit: BoxFit.contain,
                               ),
                             ),
                             Spacer(flex:2),
                             Container(
                               child: Column(
-
                                 children: <Widget>[
                                   Spacer(flex:1),
                                   Text(
@@ -534,7 +538,7 @@ class VideoList extends StatelessWidget {
                                   Row(
                                       crossAxisAlignment: CrossAxisAlignment.center,
                                       children: <Widget>[
-                                        Text('$TimeOfDay.now()'),
+                                        Text("${TimeOfDay.now()}"),
                                         ElevatedButton.icon(
                                           label: Text('Save'),
                                           icon: Icon(Icons.bookmark_border),
@@ -555,111 +559,13 @@ class VideoList extends StatelessWidget {
                 ],
               ),
               onTap: (){
-                showDialog(
-                  context: context,
-                  builder: (context) => AlertDialog(
-                    title: Text('Container pressed'),
-                    content: Text("InkWell works well"),
-                  ),
-                );
-              },
-            );
-          }),
-          Builder(builder: (context) {
-            return InkWell(
-              borderRadius: BorderRadius.circular(30.0),
-              child: Column(
-                children: [
-                  Container(
-                      height:300.0,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(30.0),
-                          shape: BoxShape.rectangle,
-                          border: Border(
-                            top: BorderSide(
-                              width: 10.0,
-                              color: Colors.blueGrey,
-                              style: BorderStyle.solid,
-                            ),
-                            bottom: BorderSide(
-                              width: 10.0,
-                              color: Colors.blueGrey,
-                              style: BorderStyle.solid,
-                            ),
-                            right: BorderSide(
-                              width: 10.0,
-                              color: Colors.blueGrey,
-                              style: BorderStyle.solid,
-                            ),
-                            left: BorderSide(
-                              width: 10.0,
-                              color: Colors.blueGrey,
-                              style: BorderStyle.solid,
-                            ),
-                          )
-                      ),
-                      padding: EdgeInsets.zero,
-                      child: Row(
-                          children: <Widget>[
-                            Spacer(flex:1),
-                            SizedBox(
-                              child: Image(
-                                image: AssetImage('assets/img1.jpg'),
-                                fit: BoxFit.contain,
-                              ),
-                            ),
-                            Spacer(flex:2),
-                            Container(
-                              child: Column(
-
-                                children: <Widget>[
-                                  Spacer(flex:1),
-                                  Text(
-                                    'Headline',
-                                    textAlign: TextAlign.justify,
-                                    style: TextStyle(
-                                      fontSize: 40.0,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                  Spacer(flex:2),
-                                  Text('SubHeading',
-                                    textAlign: TextAlign.justify,
-                                    style: TextStyle(
-                                      fontSize: 40.0,
-                                      fontWeight: FontWeight.normal,
-                                    ),
-                                  ),
-                                  Spacer(flex:2),
-                                  Row(
-                                      crossAxisAlignment: CrossAxisAlignment.center,
-                                      children: <Widget>[
-                                        Text('$TimeOfDay.now()'),
-                                        ElevatedButton.icon(
-                                          label: Text('Save'),
-                                          icon: Icon(Icons.bookmark_border),
-                                          onPressed: (){
-                                            Icon(Icons.bookmark);
-                                          },
-                                        )
-                                      ]
-                                  ),
-                                  Spacer(flex:1),
-                                ],
-                              ),
-                            ),
-                            Spacer(flex:1),
-                          ]
-                      )
-                  ),
-                ],
-              ),
-              onTap: (){
-                showDialog(
-                  context: context,
-                  builder: (context) => AlertDialog(
-                    title: Text('Container pressed'),
-                    content: Text("InkWell works well"),
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (_) => Player(
+                      passedImage: img1,
+                      passedVideo: map[img1],
+                    ),
                   ),
                 );
               },
