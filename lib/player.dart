@@ -24,19 +24,19 @@ class _PlayerState extends State<Player> {
   @override
   void initState() {
     super.initState();
-    _controller = VideoPlayerController.asset(passedVideo)
+    _controller = passedVideo
       ..initialize().then((_) {
         setState(() {
-          return Image(image : passedImage);
+          _controller.play();
         });
       });
   }
 
-  @override
-  void dispose() {
-    super.dispose();
-    _controller.dispose();
-  }
+  // @override
+  // void dispose() {
+  //   super.dispose();
+  //   _controller.dispose();
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -44,9 +44,8 @@ class _PlayerState extends State<Player> {
       appBar: AppBar(title: Text('player')),
       body: Column(
         children: [
-          Spacer(flex:1),
           Container(
-            height: 300.0,
+            height: 250.0,
             width: double.infinity,
             child: _controller.value.isInitialized ?
             AspectRatio(
@@ -59,10 +58,11 @@ class _PlayerState extends State<Player> {
                 width: double.infinity,
               ),
           ),
-          Spacer(flex:1),
-          ListView(
+          Container(height: 20.0, width: double.infinity),
+          Expanded(
+            flex:2,
+            child: ListView(
               scrollDirection: Axis.vertical,
-              shrinkWrap: true,
               padding: EdgeInsets.zero,
               children: <Widget>[
                 Builder(builder: (context) {
@@ -71,84 +71,90 @@ class _PlayerState extends State<Player> {
                     child: Column(
                       children: [
                         Container(
-                            height:300.0,
+                            height:250.0,
+                            width: double.infinity,
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(30.0),
                                 shape: BoxShape.rectangle,
                                 border: Border(
                                   top: BorderSide(
-                                    width: 10.0,
-                                    color: Colors.blueGrey,
-                                    style: BorderStyle.solid,
+                                      width: 10.0,
+                                      color: Colors.white70
                                   ),
                                   bottom: BorderSide(
                                     width: 10.0,
-                                    color: Colors.blueGrey,
-                                    style: BorderStyle.solid,
+                                    color: Colors.white70,
+
                                   ),
                                   right: BorderSide(
                                     width: 10.0,
-                                    color: Colors.blueGrey,
-                                    style: BorderStyle.solid,
+                                    color: Colors.white70,
+
                                   ),
                                   left: BorderSide(
                                     width: 10.0,
-                                    color: Colors.blueGrey,
-                                    style: BorderStyle.solid,
+                                    color: Colors.white70,
                                   ),
                                 )
                             ),
                             padding: EdgeInsets.zero,
                             child: Row(
                                 children: <Widget>[
-                                  Spacer(flex:1),
-                                  SizedBox(
-                                    child: Image(
-                                      image: img2,
-                                      fit: BoxFit.contain,
+                                  Expanded(
+                                    flex: 1,
+                                    child: SizedBox(
+                                      height: 200.0,width:200.0,
+                                      child: Image(
+                                        image: img2,
+                                        fit: BoxFit.contain,
+                                      ),
                                     ),
                                   ),
-                                  Spacer(flex:2),
-                                  Container(
-                                    child: Column(
-
-                                      children: <Widget>[
-                                        Spacer(flex:1),
-                                        Text(
-                                          'Headline',
-                                          textAlign: TextAlign.justify,
-                                          style: TextStyle(
-                                            fontSize: 40.0,
-                                            fontWeight: FontWeight.bold,
+                                  Expanded(
+                                    flex:2,
+                                    child: Container(
+                                      child: Column(
+                                        children: <Widget>[
+                                          Spacer(flex:1),
+                                          Text(
+                                            'Headline',
+                                            textAlign: TextAlign.justify,
+                                            style: TextStyle(
+                                              fontSize: 30.0,
+                                              fontWeight: FontWeight.bold,
+                                            ),
                                           ),
-                                        ),
-                                        Spacer(flex:2),
-                                        Text('SubHeading',
-                                          textAlign: TextAlign.justify,
-                                          style: TextStyle(
-                                            fontSize: 40.0,
-                                            fontWeight: FontWeight.normal,
+                                          Spacer(flex:1),
+                                          Text('SubHeading',
+                                            textAlign: TextAlign.justify,
+                                            style: TextStyle(
+                                              fontSize: 20.0,
+                                              fontWeight: FontWeight.normal,
+                                            ),
                                           ),
-                                        ),
-                                        Spacer(flex:2),
-                                        Row(
-                                            crossAxisAlignment: CrossAxisAlignment.center,
-                                            children: <Widget>[
-                                              Text('${TimeOfDay.now()}'),
-                                              ElevatedButton.icon(
-                                                label: Text('Save'),
-                                                icon: Icon(Icons.bookmark_border),
-                                                onPressed: (){
-                                                  Icon(Icons.bookmark);
-                                                },
-                                              )
-                                            ]
-                                        ),
-                                        Spacer(flex:1),
-                                      ],
+                                          Spacer(flex:1),
+                                          Row(
+                                              children: <Widget>[
+                                                Spacer(flex: 1),
+                                                Icon(Icons.calendar_today),
+                                                Spacer(flex:1),
+                                                Text('Time of posting'),
+                                                Spacer(flex:1),
+                                                ElevatedButton.icon(
+                                                  label: Text('Save'),
+                                                  icon: Icon(Icons.bookmark_border),
+                                                  onPressed: (){
+                                                    Icon(Icons.bookmark);
+                                                  },
+                                                ),
+                                                Spacer(flex:1),
+                                              ]
+                                          ),
+                                          Spacer(flex:1),
+                                        ],
+                                      ),
                                     ),
                                   ),
-                                  Spacer(flex:1),
                                 ]
                             )
                         ),
@@ -157,7 +163,7 @@ class _PlayerState extends State<Player> {
                     onTap: (){
                       passedImage = img2;
                       passedVideo = vid2;
-                      _controller = VideoPlayerController.asset(passedVideo);
+                      _controller = passedVideo;
                     },
                   );
                 }),
@@ -167,101 +173,99 @@ class _PlayerState extends State<Player> {
                     child: Column(
                       children: [
                         Container(
-                            height:300.0,
+                            height:250.0,
+                            width: double.infinity,
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(30.0),
                                 shape: BoxShape.rectangle,
                                 border: Border(
                                   top: BorderSide(
-                                    width: 10.0,
-                                    color: Colors.blueGrey,
-                                    style: BorderStyle.solid,
+                                      width: 10.0,
+                                      color: Colors.white70
                                   ),
                                   bottom: BorderSide(
                                     width: 10.0,
-                                    color: Colors.blueGrey,
-                                    style: BorderStyle.solid,
+                                    color: Colors.white70,
+
                                   ),
                                   right: BorderSide(
                                     width: 10.0,
-                                    color: Colors.blueGrey,
-                                    style: BorderStyle.solid,
+                                    color: Colors.white70,
+
                                   ),
                                   left: BorderSide(
                                     width: 10.0,
-                                    color: Colors.blueGrey,
-                                    style: BorderStyle.solid,
+                                    color: Colors.white70,
                                   ),
                                 )
                             ),
                             padding: EdgeInsets.zero,
                             child: Row(
                                 children: <Widget>[
-                                  Spacer(flex:1),
-                                  SizedBox(
-                                    child: Image(
-                                      image: img3,
-                                      fit: BoxFit.contain,
+                                  Expanded(
+                                    flex: 1,
+                                    child: SizedBox(
+                                      height: 200.0,width:200.0,
+                                      child: Image(
+                                        image: img3,
+                                        fit: BoxFit.contain,
+                                      ),
                                     ),
                                   ),
-                                  Spacer(flex:2),
-                                  Container(
-                                    child: Column(
-
-                                      children: <Widget>[
-                                        Spacer(flex:1),
-                                        Text(
-                                          'Headline',
-                                          textAlign: TextAlign.justify,
-                                          style: TextStyle(
-                                            fontSize: 40.0,
-                                            fontWeight: FontWeight.bold,
+                                  Expanded(
+                                    flex:2,
+                                    child: Container(
+                                      child: Column(
+                                        children: <Widget>[
+                                          Spacer(flex:1),
+                                          Text(
+                                            'Headline',
+                                            textAlign: TextAlign.justify,
+                                            style: TextStyle(
+                                              fontSize: 30.0,
+                                              fontWeight: FontWeight.bold,
+                                            ),
                                           ),
-                                        ),
-                                        Spacer(flex:2),
-                                        Text('SubHeading',
-                                          textAlign: TextAlign.justify,
-                                          style: TextStyle(
-                                            fontSize: 40.0,
-                                            fontWeight: FontWeight.normal,
+                                          Spacer(flex:1),
+                                          Text('SubHeading',
+                                            textAlign: TextAlign.justify,
+                                            style: TextStyle(
+                                              fontSize: 20.0,
+                                              fontWeight: FontWeight.normal,
+                                            ),
                                           ),
-                                        ),
-                                        Spacer(flex:2),
-                                        Row(
-                                            crossAxisAlignment: CrossAxisAlignment.center,
-                                            children: <Widget>[
-                                              Text('${TimeOfDay.now()}'),
-                                              ElevatedButton.icon(
-                                                label: Text('Save'),
-                                                icon: Icon(Icons.bookmark_border),
-                                                onPressed: (){
-                                                  Icon(Icons.bookmark);
-                                                },
-                                              )
-                                            ]
-                                        ),
-                                        Spacer(flex:1),
-                                      ],
+                                          Spacer(flex:1),
+                                          Row(
+                                              children: <Widget>[
+                                                Spacer(flex: 1),
+                                                Icon(Icons.calendar_today),
+                                                Spacer(flex:1),
+                                                Text('Time of posting'),
+                                                Spacer(flex:1),
+                                                ElevatedButton.icon(
+                                                  label: Text('Save'),
+                                                  icon: Icon(Icons.bookmark_border),
+                                                  onPressed: (){
+                                                    Icon(Icons.bookmark);
+                                                  },
+                                                ),
+                                                Spacer(flex:1),
+                                              ]
+                                          ),
+                                          Spacer(flex:1),
+                                        ],
+                                      ),
                                     ),
                                   ),
-                                  Spacer(flex:1),
                                 ]
                             )
                         ),
                       ],
                     ),
                     onTap: (){
-                      passedImage = img2;
-                      passedVideo = vid2;
-                      // Navigator.push(
-                      //   context,
-                      //   MaterialPageRoute(
-                      //     builder: (_) => Player(
-                      //       passedImage: img2,
-                      //       passedVideo: map[img2],
-                      //     ),
-                      //   ),
-                      // );
+                      passedImage = img3;
+                      passedVideo = vid3;
+                      _controller = passedVideo;
                     },
                   );
                 }),
@@ -271,101 +275,99 @@ class _PlayerState extends State<Player> {
                     child: Column(
                       children: [
                         Container(
-                            height:300.0,
+                            height:250.0,
+                            width: double.infinity,
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(30.0),
                                 shape: BoxShape.rectangle,
                                 border: Border(
                                   top: BorderSide(
-                                    width: 10.0,
-                                    color: Colors.blueGrey,
-                                    style: BorderStyle.solid,
+                                      width: 10.0,
+                                      color: Colors.white70
                                   ),
                                   bottom: BorderSide(
                                     width: 10.0,
-                                    color: Colors.blueGrey,
-                                    style: BorderStyle.solid,
+                                    color: Colors.white70,
+
                                   ),
                                   right: BorderSide(
                                     width: 10.0,
-                                    color: Colors.blueGrey,
-                                    style: BorderStyle.solid,
+                                    color: Colors.white70,
+
                                   ),
                                   left: BorderSide(
                                     width: 10.0,
-                                    color: Colors.blueGrey,
-                                    style: BorderStyle.solid,
+                                    color: Colors.white70,
                                   ),
                                 )
                             ),
                             padding: EdgeInsets.zero,
                             child: Row(
                                 children: <Widget>[
-                                  Spacer(flex:1),
-                                  SizedBox(
-                                    child: Image(
-                                      image: img4,
-                                      fit: BoxFit.contain,
+                                  Expanded(
+                                    flex: 1,
+                                    child: SizedBox(
+                                      height: 200.0,width:200.0,
+                                      child: Image(
+                                        image: img4,
+                                        fit: BoxFit.contain,
+                                      ),
                                     ),
                                   ),
-                                  Spacer(flex:2),
-                                  Container(
-                                    child: Column(
-
-                                      children: <Widget>[
-                                        Spacer(flex:1),
-                                        Text(
-                                          'Headline',
-                                          textAlign: TextAlign.justify,
-                                          style: TextStyle(
-                                            fontSize: 40.0,
-                                            fontWeight: FontWeight.bold,
+                                  Expanded(
+                                    flex:2,
+                                    child: Container(
+                                      child: Column(
+                                        children: <Widget>[
+                                          Spacer(flex:1),
+                                          Text(
+                                            'Headline',
+                                            textAlign: TextAlign.justify,
+                                            style: TextStyle(
+                                              fontSize: 30.0,
+                                              fontWeight: FontWeight.bold,
+                                            ),
                                           ),
-                                        ),
-                                        Spacer(flex:2),
-                                        Text('SubHeading',
-                                          textAlign: TextAlign.justify,
-                                          style: TextStyle(
-                                            fontSize: 40.0,
-                                            fontWeight: FontWeight.normal,
+                                          Spacer(flex:1),
+                                          Text('SubHeading',
+                                            textAlign: TextAlign.justify,
+                                            style: TextStyle(
+                                              fontSize: 20.0,
+                                              fontWeight: FontWeight.normal,
+                                            ),
                                           ),
-                                        ),
-                                        Spacer(flex:2),
-                                        Row(
-                                            crossAxisAlignment: CrossAxisAlignment.center,
-                                            children: <Widget>[
-                                              Text('${TimeOfDay.now()}'),
-                                              ElevatedButton.icon(
-                                                label: Text('Save'),
-                                                icon: Icon(Icons.bookmark_border),
-                                                onPressed: (){
-                                                  Icon(Icons.bookmark);
-                                                },
-                                              )
-                                            ]
-                                        ),
-                                        Spacer(flex:1),
-                                      ],
+                                          Spacer(flex:1),
+                                          Row(
+                                              children: <Widget>[
+                                                Spacer(flex: 1),
+                                                Icon(Icons.calendar_today),
+                                                Spacer(flex:1),
+                                                Text('Time of posting'),
+                                                Spacer(flex:1),
+                                                ElevatedButton.icon(
+                                                  label: Text('Save'),
+                                                  icon: Icon(Icons.bookmark_border),
+                                                  onPressed: (){
+                                                    Icon(Icons.bookmark);
+                                                  },
+                                                ),
+                                                Spacer(flex:1),
+                                              ]
+                                          ),
+                                          Spacer(flex:1),
+                                        ],
+                                      ),
                                     ),
                                   ),
-                                  Spacer(flex:1),
                                 ]
                             )
                         ),
                       ],
                     ),
                     onTap: (){
-                      passedImage = img2;
-                      passedVideo = vid2;
-                      // Navigator.push(
-                      //   context,
-                      //   MaterialPageRoute(
-                      //     builder: (_) => Player(
-                      //       passedImage: img2,
-                      //       passedVideo: map[img2],
-                      //     ),
-                      //   ),
-                      // );
+                      passedImage = img4;
+                      passedVideo = vid4;
+                      _controller = passedVideo;
                     },
                   );
                 }),
@@ -375,101 +377,99 @@ class _PlayerState extends State<Player> {
                     child: Column(
                       children: [
                         Container(
-                            height:300.0,
+                            height:250.0,
+                            width: double.infinity,
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(30.0),
                                 shape: BoxShape.rectangle,
                                 border: Border(
                                   top: BorderSide(
-                                    width: 10.0,
-                                    color: Colors.blueGrey,
-                                    style: BorderStyle.solid,
+                                      width: 10.0,
+                                      color: Colors.white70
                                   ),
                                   bottom: BorderSide(
                                     width: 10.0,
-                                    color: Colors.blueGrey,
-                                    style: BorderStyle.solid,
+                                    color: Colors.white70,
+
                                   ),
                                   right: BorderSide(
                                     width: 10.0,
-                                    color: Colors.blueGrey,
-                                    style: BorderStyle.solid,
+                                    color: Colors.white70,
+
                                   ),
                                   left: BorderSide(
                                     width: 10.0,
-                                    color: Colors.blueGrey,
-                                    style: BorderStyle.solid,
+                                    color: Colors.white70,
                                   ),
                                 )
                             ),
                             padding: EdgeInsets.zero,
                             child: Row(
                                 children: <Widget>[
-                                  Spacer(flex:1),
-                                  SizedBox(
-                                    child: Image(
-                                      image: img5,
-                                      fit: BoxFit.contain,
+                                  Expanded(
+                                    flex: 1,
+                                    child: SizedBox(
+                                      height: 200.0,width:200.0,
+                                      child: Image(
+                                        image: img5,
+                                        fit: BoxFit.contain,
+                                      ),
                                     ),
                                   ),
-                                  Spacer(flex:2),
-                                  Container(
-                                    child: Column(
-
-                                      children: <Widget>[
-                                        Spacer(flex:1),
-                                        Text(
-                                          'Headline',
-                                          textAlign: TextAlign.justify,
-                                          style: TextStyle(
-                                            fontSize: 40.0,
-                                            fontWeight: FontWeight.bold,
+                                  Expanded(
+                                    flex:2,
+                                    child: Container(
+                                      child: Column(
+                                        children: <Widget>[
+                                          Spacer(flex:1),
+                                          Text(
+                                            'Headline',
+                                            textAlign: TextAlign.justify,
+                                            style: TextStyle(
+                                              fontSize: 30.0,
+                                              fontWeight: FontWeight.bold,
+                                            ),
                                           ),
-                                        ),
-                                        Spacer(flex:2),
-                                        Text('SubHeading',
-                                          textAlign: TextAlign.justify,
-                                          style: TextStyle(
-                                            fontSize: 40.0,
-                                            fontWeight: FontWeight.normal,
+                                          Spacer(flex:1),
+                                          Text('SubHeading',
+                                            textAlign: TextAlign.justify,
+                                            style: TextStyle(
+                                              fontSize: 20.0,
+                                              fontWeight: FontWeight.normal,
+                                            ),
                                           ),
-                                        ),
-                                        Spacer(flex:2),
-                                        Row(
-                                            crossAxisAlignment: CrossAxisAlignment.center,
-                                            children: <Widget>[
-                                              Text('${TimeOfDay.now()}'),
-                                              ElevatedButton.icon(
-                                                label: Text('Save'),
-                                                icon: Icon(Icons.bookmark_border),
-                                                onPressed: (){
-                                                  Icon(Icons.bookmark);
-                                                },
-                                              )
-                                            ]
-                                        ),
-                                        Spacer(flex:1),
-                                      ],
+                                          Spacer(flex:1),
+                                          Row(
+                                              children: <Widget>[
+                                                Spacer(flex: 1),
+                                                Icon(Icons.calendar_today),
+                                                Spacer(flex:1),
+                                                Text('Time of posting'),
+                                                Spacer(flex:1),
+                                                ElevatedButton.icon(
+                                                  label: Text('Save'),
+                                                  icon: Icon(Icons.bookmark_border),
+                                                  onPressed: (){
+                                                    Icon(Icons.bookmark);
+                                                  },
+                                                ),
+                                                Spacer(flex:1),
+                                              ]
+                                          ),
+                                          Spacer(flex:1),
+                                        ],
+                                      ),
                                     ),
                                   ),
-                                  Spacer(flex:1),
                                 ]
                             )
                         ),
                       ],
                     ),
                     onTap: (){
-                      passedImage = img2;
-                      passedVideo = vid2;
-                      // Navigator.push(
-                      //   context,
-                      //   MaterialPageRoute(
-                      //     builder: (_) => Player(
-                      //       passedImage: img2,
-                      //       passedVideo: map[img2],
-                      //     ),
-                      //   ),
-                      // );
+                      passedImage = img5;
+                      passedVideo = vid5;
+                      _controller = passedVideo;
                     },
                   );
                 }),
@@ -479,108 +479,117 @@ class _PlayerState extends State<Player> {
                     child: Column(
                       children: [
                         Container(
-                            height:300.0,
+                            height:250.0,
+                            width: double.infinity,
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(30.0),
                                 shape: BoxShape.rectangle,
                                 border: Border(
                                   top: BorderSide(
-                                    width: 10.0,
-                                    color: Colors.blueGrey,
-                                    style: BorderStyle.solid,
+                                      width: 10.0,
+                                      color: Colors.white70
                                   ),
                                   bottom: BorderSide(
                                     width: 10.0,
-                                    color: Colors.blueGrey,
-                                    style: BorderStyle.solid,
+                                    color: Colors.white70,
+
                                   ),
                                   right: BorderSide(
                                     width: 10.0,
-                                    color: Colors.blueGrey,
-                                    style: BorderStyle.solid,
+                                    color: Colors.white70,
+
                                   ),
                                   left: BorderSide(
                                     width: 10.0,
-                                    color: Colors.blueGrey,
-                                    style: BorderStyle.solid,
+                                    color: Colors.white70,
                                   ),
                                 )
                             ),
                             padding: EdgeInsets.zero,
                             child: Row(
                                 children: <Widget>[
-                                  Spacer(flex:1),
-                                  SizedBox(
-                                    child: Image(
-                                      image: img1,
-                                      fit: BoxFit.contain,
+                                  Expanded(
+                                    flex: 1,
+                                    child: SizedBox(
+                                      height: 200.0,width:200.0,
+                                      child: Image(
+                                        image: img1,
+                                        fit: BoxFit.contain,
+                                      ),
                                     ),
                                   ),
-                                  Spacer(flex:2),
-                                  Container(
-                                    child: Column(
-
-                                      children: <Widget>[
-                                        Spacer(flex:1),
-                                        Text(
-                                          'Headline',
-                                          textAlign: TextAlign.justify,
-                                          style: TextStyle(
-                                            fontSize: 40.0,
-                                            fontWeight: FontWeight.bold,
+                                  Expanded(
+                                    flex:2,
+                                    child: Container(
+                                      child: Column(
+                                        children: <Widget>[
+                                          Spacer(flex:1),
+                                          Text(
+                                            'Headline',
+                                            textAlign: TextAlign.justify,
+                                            style: TextStyle(
+                                              fontSize: 30.0,
+                                              fontWeight: FontWeight.bold,
+                                            ),
                                           ),
-                                        ),
-                                        Spacer(flex:2),
-                                        Text('SubHeading',
-                                          textAlign: TextAlign.justify,
-                                          style: TextStyle(
-                                            fontSize: 40.0,
-                                            fontWeight: FontWeight.normal,
+                                          Spacer(flex:1),
+                                          Text('SubHeading',
+                                            textAlign: TextAlign.justify,
+                                            style: TextStyle(
+                                              fontSize: 20.0,
+                                              fontWeight: FontWeight.normal,
+                                            ),
                                           ),
-                                        ),
-                                        Spacer(flex:2),
-                                        Row(
-                                            crossAxisAlignment: CrossAxisAlignment.center,
-                                            children: <Widget>[
-                                              Text('${TimeOfDay.now()}'),
-                                              ElevatedButton.icon(
-                                                label: Text('Save'),
-                                                icon: Icon(Icons.bookmark_border),
-                                                onPressed: (){
-                                                  Icon(Icons.bookmark);
-                                                },
-                                              )
-                                            ]
-                                        ),
-                                        Spacer(flex:1),
-                                      ],
+                                          Spacer(flex:1),
+                                          Row(
+                                              children: <Widget>[
+                                                Spacer(flex: 1),
+                                                Icon(Icons.calendar_today),
+                                                Spacer(flex:1),
+                                                Text('Time of posting'),
+                                                Spacer(flex:1),
+                                                ElevatedButton.icon(
+                                                  label: Text('Save'),
+                                                  icon: Icon(Icons.bookmark_border),
+                                                  onPressed: (){
+                                                    Icon(Icons.bookmark);
+                                                  },
+                                                ),
+                                                Spacer(flex:1),
+                                              ]
+                                          ),
+                                          Spacer(flex:1),
+                                        ],
+                                      ),
                                     ),
                                   ),
-                                  Spacer(flex:1),
                                 ]
                             )
                         ),
                       ],
                     ),
                     onTap: (){
-                      passedImage = img2;
-                      passedVideo = vid2;
-                      // Navigator.push(
-                      //   context,
-                      //   MaterialPageRoute(
-                      //     builder: (_) => Player(
-                      //       passedImage: img2,
-                      //       passedVideo: map[img2],
-                      //     ),
-                      //   ),
-                      // );
+                      passedImage = img1;
+                      passedVideo = vid1;
+                      _controller = passedVideo;
                     },
                   );
                 }),
-              ]
+
+              ],
+            ),
           ),
-          Spacer(flex:1),
         ],
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: (){
+          setState(
+                  () => _controller.value.isPlaying ?
+                  _controller.pause() :
+                  _controller.play()
+          );
+        },
+        child: Icon(_controller.value.isPlaying ? Icons.pause : Icons.play_arrow_rounded),
       ),
     );
   }
