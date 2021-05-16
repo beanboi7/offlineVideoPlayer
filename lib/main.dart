@@ -16,12 +16,13 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-     initialRoute: '/',
+      initialRoute: '/',
       routes: {
        '/': (context) => VideoList(),
         '/player' : (context) => Player(),
         '/profile' : (context) => Profile(),
       },
+      debugShowCheckedModeBanner: false,
       //home: VideoList(),
     );
   }
