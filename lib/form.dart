@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:videoplayer/profile.dart';
 import 'constants.dart';
 
 class CustomForm extends StatefulWidget {
@@ -8,99 +9,134 @@ class CustomForm extends StatefulWidget {
 
 class _CustomFormState extends State<CustomForm> {
   final _formKey = GlobalKey<FormState>();
-  final textController = TextEditingController();
+  final nameController = TextEditingController();
+  final mailController = TextEditingController();
+  final dobController = TextEditingController();
+  final genderController = TextEditingController();
+  final phoneController = TextEditingController();
 
-  void init(){
+  void initState() {
     super.initState();
   }
+
   @override
-  void dispose(){
-    textController.dispose();
-    super.dispose();
-  }
+  // void dispose(){
+  //   textController.dispose();
+  //   super.dispose();
+  // }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: ListView(
-        children: <Widget>[
-          Form(
-            key: _formKey,
-            child: Column(
-              children: <Widget>[
-                TextFormField(
-                    controller: textController,
-                    initialValue: 'username',
-                    autofocus: true,
-                    validator: (_username){
-                      if (_username == null || _username.isEmpty){
-                        return 'Enter a valid username';
-                      }
-                      _username = textController.text;
-                      return null;
-                    }
+      body: ListView(children: <Widget>[
+        Form(
+          key: _formKey,
+          child: Column(children: <Widget>[
+            TextFormField(
+              decoration: const InputDecoration(
+                icon: Icon(Icons.person),
+                hintText: 'What do people call you?',
+                labelText: 'UserName *',
+              ),
+              controller: nameController,
+              autofocus: true,
+              validator: (String value) {
+                if (value == null || value.isEmpty) {
+                  return 'Enter a valid username';
+                } else {
+                  userName = nameController.text;
+                  return null;
+                }
+              },
+            ),
+            TextFormField(
+              decoration: const InputDecoration(
+                icon: Icon(Icons.mail),
+                hintText: 'Where to send your emails to?',
+                labelText: 'Email *',
+              ),
+              controller: mailController,
+              autofocus: true,
+              validator: (String value) {
+                if (value == null || value.isEmpty) {
+                  return 'Enter a valid Mail Id';
+                } else {
+                  mail = mailController.text;
+                  return null;
+                }
+              },
+            ),
+            TextFormField(
+                decoration: const InputDecoration(
+                  icon: Icon(Icons.calendar_today_outlined),
+                  hintText: 'When did you first cry?',
+                  labelText: 'DOB *',
                 ),
-                TextFormField(
-                    controller: textController,
-                    initialValue: 'email',
-                    autofocus: true,
-                    validator: (_mail){
-                      if (_mail == null || _mail.isEmpty){
-                        return 'Enter a valid Mail Id';
-                      }
-                      _mail = textController.text;
-                      return null;
-                    }
+                controller: dobController,
+                // initialValue: 'DOB', Shouldn't set both initialValue and controller
+                validator: (String value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Enter a valid DOB';
+                  } else {
+                    dob = dobController.text;
+                    return null;
+                  }
+                }),
+            TextFormField(
+                decoration: const InputDecoration(
+                  icon: Icon(Icons.phone),
+                  hintText: 'Your 10 digit mobile number',
+                  labelText: 'PhoneNumber *',
                 ),
-                TextFormField(
-                    controller: textController,
-                    initialValue: 'DOB',
-                    validator: (_dob){
-                      if (_dob == null || _dob.isEmpty){
-                        return 'Enter a valid username';
-                      }
-                      _dob = textController.text;
-                      return null;
-                    }
+                controller: phoneController,
+                // initialValue: 'phoneNumber',
+                autofocus: true,
+                validator: (String value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Enter a valid PhoneNumber';
+                  } else {
+                    phone = phoneController.text;
+                    return null;
+                  }
+                }),
+            TextFormField(
+                decoration: const InputDecoration(
+                  icon: Icon(Icons.wc),
+                  hintText: 'Your gender',
+                  labelText: 'Gender *',
                 ),
-                TextFormField(
-                    controller: textController,
-                    initialValue: 'phoneNumber',
-                    autofocus: true,
-                    validator: (_phone){
-                      if (_phone == null || _phone.isEmpty){
-                        return 'Enter a valid username';
-                      }
-                      _phone = textController.text;
-                      return null;
-                    }
-                ),
-                TextFormField(
-                    controller: textController,
-                    initialValue: 'gender',
-                    autofocus: true,
-                    validator: (_gender){
-                      if (_gender == null || _gender.isEmpty){
-                        return 'Enter a valid username';
-                      }
-                      _gender = textController.text;
-                      return null;
-                    }
-                ),
-
-                ElevatedButton(
-                  onPressed: () {
-                    if (_formKey.currentState.validate()) {
-                      ScaffoldMessenger.of(context)
-                          .showSnackBar(SnackBar(content: Text('updating values')));
-                    }
-                  },
-                  child: Text('Submit'),
-                ),
-              ]
-          ),
-        ),]
-
-      ),
+                controller: genderController,
+                // initialValue: 'gender',
+                autofocus: true,
+                validator: (String value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Enter a valid Gender';
+                  }
+                  gender = genderController.text;
+                  return null;
+                }),
+            ElevatedButton(
+              onPressed: () {
+                if (_formKey.currentState.validate()) {
+                  _formKey.currentState.save();
+                  Navigator.pop(context);
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (_) => Profile(
+                              updateUserName: userName,
+                              updateMail: mail,
+                              updateDOB: dob,
+                              updateGender: gender,
+                              updatePhone: phone,
+                            )),
+                  );
+                }
+              },
+              child: Text('Submit'),
+            ),
+          ]),
+        ),
+      ]),
     );
   }
 }

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:video_player/video_player.dart';
 
-String userName = "BOss";
-String dob = "24/04/2049";
-String gender = "Male";
-String mail = "killerbean@protonmail.com ";
-String phone = "+1-7485960746";
+var userName = "BOss";
+var dob = "24/04/2049";
+var gender = "Male";
+var mail = "killerbean@protonmail.com ";
+var phone = "+1-7485960746";
 
 const img1 = AssetImage('assets/img1.jpg');
 const img2 = AssetImage('assets/img2.jpg');

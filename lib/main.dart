@@ -45,19 +45,24 @@ class VideoList extends StatelessWidget {
               ),
             ),
             ListTile(
-              title: Text('Profile'),
-              onTap: (){
-                Navigator.pop(context);
-                Navigator.pushNamed(context, '/profile');
-              }
-            ),
-            ListTile(
               title: Text('Player'),
               onTap: (){
                 Navigator.pop(context);
                 Navigator.pushNamed(context, '/player');
               },
             ),
+            ListTile(
+              title: Text('Profile'),
+              onTap: (){
+                Navigator.pop(context);
+                Navigator.pushNamed(context, '/profile');
+              }
+            ),
+            SizedBox(
+              height: 350,
+            ),
+            Center(
+                child: Text("Made by Sriram J")),
           ],
         ),
       ),
