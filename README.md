@@ -14,6 +14,11 @@
 - The details once entered can be viewed in your Profile page.
 
 ### Misc
+<<<<<<< HEAD
 - The Images and Videos added in the build are just for representation purposes and are not related to each other.
 - [Issue]((https://github.com/flutter/flutter/issues/47281))The APK didn't work on my smartphone but runs well on the emulator, so
 I'd to revert the push made earlier.
+=======
+- The Images and Videos added in the build are just for respresentation purposes and are not related to each other.
+- App logo's source from [here](https://dribbble.com/shots/4022842-Play-button?utm_source=Clipboard_Shot&utm_campaign=adamlorry&utm_content=Play%20button&utm_medium=Social_Share&utm_source=Clipboard_Shot&utm_campaign=adamlorry&utm_content=Play%20button&utm_medium=Social_Share)
+>>>>>>> d6b1f8c092f4e0dc450d8e64c7d40cac3fdc7354
