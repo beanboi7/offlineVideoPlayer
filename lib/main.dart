@@ -3,10 +3,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
-import 'form.dart';
+
 import 'profile.dart';
 import 'player.dart';
-import 'constants.dart';
+import 'holders.dart';
 
 void main(){
   runApp(MyApp());
@@ -31,35 +31,37 @@ class VideoList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Home')),
+      appBar: AppBar(
+        centerTitle: true,
+        title: Text('Home'),
+        backgroundColor: Colors.pinkAccent[100],
+      ),
       drawer: Drawer(
         child: ListView(
           padding: EdgeInsets.zero,
           children: <Widget>[
             DrawerHeader(
               child: Center(
-                child: Text('Welcome'),
+                child: Text(
+                    'Welcome',
+                  style:  TextStyle(
+                    fontSize: 35.0,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
               ),
               decoration: BoxDecoration(
-                color: Colors.green,
+                color: Colors.pinkAccent[100],
               ),
-            ),
-            ListTile(
-              title: Text('Player'),
-              onTap: (){
-                Navigator.pop(context);
-                Navigator.pushNamed(context, '/player');
-              },
             ),
             ListTile(
               title: Text('Profile'),
               onTap: (){
-                Navigator.pop(context);
                 Navigator.pushNamed(context, '/profile');
-              }
+              },
             ),
             SizedBox(
-              height: 350,
+              height: 400,
             ),
             Center(
                 child: Text("Made by Sriram J")),

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:video_player/video_player.dart';
-import 'constants.dart';
+import 'holders.dart';
 
 
 class Player extends StatefulWidget {
@@ -24,14 +24,14 @@ class _PlayerState extends State<Player> {
   @override
   void initState() {
     super.initState();
-    _controller = passedVideo
-      ..initialize().then((_) {
-        setState(() {
-          _controller.play();
-        });
+    _controller = passedVideo..initialize().then((_) {
+      setState(() {
+        _controller.play();
       });
+    });
   }
 
+  // TODO: need to fix this to prevent memory leak
   // @override
   // void dispose() {
   //   super.dispose();
@@ -40,8 +40,14 @@ class _PlayerState extends State<Player> {
 
   @override
   Widget build(BuildContext context) {
+
+
     return Scaffold(
-      appBar: AppBar(title: Text('player')),
+      appBar: AppBar(
+          centerTitle: true,
+          backgroundColor: Colors.pinkAccent[100],
+          title: Text('Player')
+      ),
       body: Column(
         children: [
           Container(
@@ -163,7 +169,11 @@ class _PlayerState extends State<Player> {
                     onTap: (){
                       passedImage = img2;
                       passedVideo = vid2;
-                      _controller = passedVideo;
+                      _controller = passedVideo..initialize().then((_) {
+                        setState(() {
+                          _controller.play();
+                        });
+                      });
                     },
                   );
                 }),
@@ -265,7 +275,11 @@ class _PlayerState extends State<Player> {
                     onTap: (){
                       passedImage = img3;
                       passedVideo = vid3;
-                      _controller = passedVideo;
+                      _controller = passedVideo..initialize().then((_) {
+                        setState(() {
+                          _controller.play();
+                        });
+                      });
                     },
                   );
                 }),
@@ -367,7 +381,11 @@ class _PlayerState extends State<Player> {
                     onTap: (){
                       passedImage = img4;
                       passedVideo = vid4;
-                      _controller = passedVideo;
+                      _controller = passedVideo..initialize().then((_) {
+                        setState(() {
+                          _controller.play();
+                        });
+                      });
                     },
                   );
                 }),
@@ -470,6 +488,11 @@ class _PlayerState extends State<Player> {
                       passedImage = img5;
                       passedVideo = vid5;
                       _controller = passedVideo;
+                      _controller = passedVideo..initialize().then((_) {
+                        setState(() {
+                          _controller.play();
+                        });
+                      });
                     },
                   );
                 }),
@@ -571,7 +594,11 @@ class _PlayerState extends State<Player> {
                     onTap: (){
                       passedImage = img1;
                       passedVideo = vid1;
-                      _controller = passedVideo;
+                      _controller = passedVideo..initialize().then((_) {
+                        setState(() {
+                          _controller.play();
+                        });
+                      });
                     },
                   );
                 }),
