@@ -15,3 +15,4 @@
 
 ### Misc
 - The Images and Videos added in the build are just for respresentation purposes and are not related to each other.
+- App logo's source from [here](https://dribbble.com/shots/4022842-Play-button?utm_source=Clipboard_Shot&utm_campaign=adamlorry&utm_content=Play%20button&utm_medium=Social_Share&utm_source=Clipboard_Shot&utm_campaign=adamlorry&utm_content=Play%20button&utm_medium=Social_Share)
